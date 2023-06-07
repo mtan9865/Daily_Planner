@@ -8,6 +8,10 @@ function getTasksFromLocalStorage() {
     return JSON.parse(localStorage.getItem("taskList")) || []
 }
 
+function updateTasksInLocalStorage() {
+    JSON.parse(localStorage.setItem("taskList", JSON.stringify(taskList))) || []
+}
+
 function displayList() {
     ulEl.innerHTML = ""
     
@@ -27,7 +31,7 @@ inputBtnEl.addEventListener("click", function() {
         
         taskList.push(removedWhiteSpace)
         
-        localStorage.setItem("taskList", JSON.stringify(taskList))
+        updateTasksInLocalStorage()
         
         displayList()
         
@@ -37,4 +41,9 @@ inputBtnEl.addEventListener("click", function() {
 
 function createTask(taskText) {
     return {text: taskText, completed: false}
+}
+
+function deleteTask(index) {
+    taskList.splice(index, 1)
+    updateTasksInLocalStorage()
 }
