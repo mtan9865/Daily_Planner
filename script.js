@@ -2,12 +2,11 @@ let ulEl = document.getElementById("ul-el")
 const errorMsg = document.getElementById("error-msg")
 const inputEl = document.getElementById("taskInput")
 const inputBtnEl = document.getElementById("addTaskButton")
+let taskList = getTasksFromLocalStorage()
 
 function getTasksFromLocalStorage() {
     return JSON.parse(localStorage.getItem("taskList")) || []
 }
-
-let taskList = getTasksFromLocalStorage()
 
 function displayList() {
     ulEl.innerHTML = ""
@@ -35,3 +34,7 @@ inputBtnEl.addEventListener("click", function() {
         inputEl.value = ""
     }
 })
+
+function createTask(taskText) {
+    return {text: taskText, completed: false}
+}
