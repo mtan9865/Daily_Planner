@@ -81,3 +81,12 @@ function createTaskElement(taskObj) {
   
     return taskItem;
 }
+
+function renderTasks() {
+    const taskList = document.getElementById("ul-el")
+    taskList.innerHTML = ""
+    for (let i=0; i,taskList.length; i++) {
+        const taskElement = createTaskElement(taskList[i])
+        taskList.appendChild(taskElement)
+    }
+}
