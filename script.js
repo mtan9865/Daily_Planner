@@ -19,11 +19,11 @@ function createTask(taskText) {
 }
 
 function deleteTask(index) {
-    taskArray.splice(index, 1)
-    updateTasksInLocalStorage()
+    taskArray.splice(index, 1);
+    updateTasksInLocalStorage();
 }
 
-function createTaskElement(taskObj) {
+function createTaskElement(taskObj, index) {
     const taskItem = document.createElement("li");
     taskItem.classList.add("taskItem");
   
@@ -46,7 +46,7 @@ function createTaskElement(taskObj) {
     removeButton.classList.add("removeButton");
     removeButton.textContent = "X";
     removeButton.addEventListener("click", function () {
-        deleteTask(taskObj);
+        deleteTask(index);
         renderTasks();
     });
   
@@ -58,11 +58,11 @@ function createTaskElement(taskObj) {
 }
 
 function renderTasks() {
-    taskList.innerHTML = ""
+    taskList.innerHTML = "";
 
-    for (let i=0; i,taskArray.length; i++) {
-        const taskElement = createTaskElement(taskArray[i])
-        taskList.appendChild(taskElement)
+    for (let i = 0; i < taskArray.length; i++) {
+        const taskElement = createTaskElement(taskArray[i], i);
+        taskList.appendChild(taskElement);
     }
 }
 
