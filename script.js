@@ -15,7 +15,7 @@ function updateTasksInLocalStorage() {
 function displayList() {
     ulEl.innerHTML = ""
     
-    for(let i = 0; i < taskList.length; i++) {
+    for (let i = 0; i < taskList.length; i++) {
         ulEl.innerHTML += "<li>" + taskList[i] + "</li>"
     }
 }
@@ -23,20 +23,33 @@ displayList()
 
 inputBtnEl.addEventListener("click", function() {
     let removedWhiteSpace = inputEl.value.trim()
-    
-    if(removedWhiteSpace === "") {
+
+    if (removedWhiteSpace === "") {
         errorMsg.textContent = "Please enter a new task."
     } else {
-        errorMsg.textContent = ""
-        
+        errorMsg.textContent = ""        
         taskList.push(removedWhiteSpace)
-        
-        updateTasksInLocalStorage()
-        
+        updateTasksInLocalStorage()        
         displayList()
-        
         inputEl.value = ""
     }
+    inputEl.focus()
+})
+
+inputEl.addEventListener("keypress", function(event) {
+    let removedWhiteSpace = inputEl.value.trim()
+
+    if (removedWhiteSpace === "") {
+        errorMsg.textContent = "Please enter a new task."
+    } if (event.key === "Enter") {
+        // event.preventDefault()
+        errorMsg.textContent = ""
+        taskList.push(removedWhiteSpace)
+        updateTasksInLocalStorage()
+        displayList()
+        inputEl.value = ""
+    }
+    inputEl.focus()
 })
 
 function createTask(taskText) {
@@ -90,3 +103,13 @@ function renderTasks() {
         taskList.appendChild(taskElement)
     }
 }
+
+addTaskButton.addEventListener("click", function() {
+    const taskText = taskInput.value
+    if(taskText==="") return
+    const newTask = createTask(taskText)
+    taskList.push(newTask)
+    updateTasksInLocalStorage()
+})
+
+renderTasks()
