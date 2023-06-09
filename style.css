@@ -27,6 +27,11 @@ h1 {
   border-color: #4caf50;
 }
 
+#error-msg {
+  font-size: .75rem;
+  color: red;
+}
+
 #addTaskButton {
   display: block;
   width: 100%;
